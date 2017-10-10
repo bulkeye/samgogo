@@ -1,0 +1,21 @@
+//- layout.pug
+doctype html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"
+html(lang="en")
+    head
+        title My Site - #{title}
+        style
+            include ../../public/css/style.css
+        block scripts  
+            script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
+            script
+                include ../../public/js/login/submitForm.js
+    body
+        div.outerContainer
+            h1= title
+            block content
+            block foot
+            block error_msg
+
+
+            
+    

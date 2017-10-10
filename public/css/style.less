@@ -1,0 +1,135 @@
+
+@bgclr:#eef;
+@btnwidth: 100px;
+@basBlockHeight: 20px;
+@baseFontSize: 10px;
+
+
+body {
+  
+    
+    background-color:@bgclr;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    width: 100% !important;
+    -webkit-text-size-adjust: 100% !important;
+    -ms-text-size-adjust: 100% !important;
+    -webkit-font-smoothing: antialiased !important;
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+    font-size: 12px;
+    display:block;
+    border-collapse: collapse !important;
+
+    }
+
+button{
+    
+ width:@btnwidth!important;
+ height:@btnwidth * 1px !important;
+ font-size:@baseFontSize * 1.5px;
+    
+}
+
+
+div.outerContainer{
+ margin: 10px auto 10px auto;
+ width:80%;
+ padding: @btnwidth;
+ 
+
+  
+    -moz-box-shadow: 3px 3px 4px #444;
+    -webkit-box-shadow: 3px 3px 4px #444;
+    box-shadow: 0px 0px 10px #444;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444')";
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444'); 
+    border: 1px solid black;
+
+    .formContainer{
+        
+        
+        width:calc(100% - 20%);
+        border: 1px solid black;
+        padding:10px;
+        margin: 20px;
+       
+        input[class^="input"]{
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            border: 1px solid black;
+            padding:10px;
+            height: @basBlockHeight * 0.9px;
+            width: 20%;
+         
+            transition: width 0.5s ease-in-out;
+            -webkit-transition: width 0.5s ease-in-out;
+        }
+        
+            
+        input[type=submit]{
+            margin-top: 10px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            padding:10px;              
+            border: 1px solid black;
+            width:  @btnwidth;
+            height:  @basBlockHeight * 2px ;
+
+        }
+        
+        input[type=submit]:hover {
+            cursor:pointer;
+        }
+        
+    
+        input[type=text]:focus{
+                width:40%;
+        }
+            
+        .typedText{
+                   border: 1px solid black;
+                    width:100%;
+                    padding: 20px 0px;
+                    text-align: center;
+                    position: relative;
+                    left:0px;
+                   font-size: @baseFontSize * 2px;
+        }
+        
+        .typedText::before {
+                    
+                    content: "Your typed: ";
+        
+        }
+    
+    }
+    
+   .ajaxResult{
+        width:100%;
+        text-align: center;
+        font-size: @baseFontSize * 2px;
+        background-color: #2d5375;
+        border: 1px solid black;
+        padding: 20px 0px;
+        color:#ffffff;
+        height: auto;
+
+    }
+    
+    div.login{
+        
+       p a#login_link {  
+           
+            font-size: @baseFontSize * 2px;
+        }
+    }
+
+}
+
+
+
+
+

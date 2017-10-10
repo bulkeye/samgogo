@@ -1,0 +1,14 @@
+//- login.pug
+extends ../base/layout.pug
+block append content
+        div.formContainer
+            form#searchForm(action="/login_submit" )
+                input.inputText#inputName(type="text" placeholder="name...")
+                input.inputText#inputPW(type="password" placeholder="password...")
+                input#submitBtn(type="submit" value="submit")
+            .typedText  
+            .ajaxResult blank
+                if errors 
+                    ul
+                        for error in errors
+                            li!= error.msg

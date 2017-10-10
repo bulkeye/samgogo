@@ -1,0 +1,89 @@
+body {
+  background-color: #eef;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  width: 100% !important;
+  -webkit-text-size-adjust: 100% !important;
+  -ms-text-size-adjust: 100% !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-family: Arial, Verdana, Helvetica, sans-serif;
+  font-size: 12px;
+  display: block;
+  border-collapse: collapse !important;
+}
+button {
+  width: 100px !important;
+  height: 100px !important;
+  font-size: 15px;
+}
+div.outerContainer {
+  margin: 10px auto 10px auto;
+  width: 80%;
+  padding: 100px;
+  -moz-box-shadow: 3px 3px 4px #444;
+  -webkit-box-shadow: 3px 3px 4px #444;
+  box-shadow: 0px 0px 10px #444;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444')";
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#444444');
+  border: 1px solid black;
+}
+div.outerContainer .formContainer {
+  width: calc(80%);
+  border: 1px solid black;
+  padding: 10px;
+  margin: 20px;
+}
+div.outerContainer .formContainer input[class^="input"] {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  padding: 10px;
+  height: 18px;
+  width: 20%;
+  transition: width 0.5s ease-in-out;
+  -webkit-transition: width 0.5s ease-in-out;
+}
+div.outerContainer .formContainer input[type=submit] {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid black;
+  width: 100px;
+  height: 40px;
+}
+div.outerContainer .formContainer input[type=submit]:hover {
+  cursor: pointer;
+}
+div.outerContainer .formContainer input[type=text]:focus {
+  width: 40%;
+}
+div.outerContainer .formContainer .typedText {
+  border: 1px solid black;
+  width: 100%;
+  padding: 20px 0px;
+  text-align: center;
+  position: relative;
+  left: 0px;
+  font-size: 20px;
+}
+div.outerContainer .formContainer .typedText::before {
+  content: "Your typed: ";
+}
+div.outerContainer .ajaxResult {
+  width: 100%;
+  text-align: center;
+  font-size: 20px;
+  background-color: #2d5375;
+  border: 1px solid black;
+  padding: 20px 0px;
+  color: #ffffff;
+  height: auto;
+}
+div.outerContainer div.login p a#login_link {
+  font-size: 20px;
+}
+/*# sourceMappingURL=style.css.map */
