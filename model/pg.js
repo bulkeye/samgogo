@@ -1,5 +1,6 @@
 
 var pgp = require('pg-promise');
+
 var db = pgp('postgres://:password@host:port/database');
 
 db.one('SELECT $1 AS value', 123)

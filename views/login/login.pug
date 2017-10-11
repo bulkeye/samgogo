@@ -3,8 +3,8 @@ extends ../base/layout.pug
 block append content
         div.formContainer
             form#searchForm(action="/login_submit" )
-                input.inputText#inputName(type="text" placeholder="name...")
-                input.inputText#inputPW(type="password" placeholder="password...")
+                input.inputText#inputName(type="text" placeholder="name..." required='true')
+                input.inputText#inputPW(type="password" placeholder="password..." required='true')
                 input#submitBtn(type="submit" value="submit")
             .typedText  
             .ajaxResult blank
