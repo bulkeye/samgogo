@@ -8,7 +8,6 @@ password text not null constraint pwd_format check (password ~* '[a-z]{1,}' and 
 email text not null constraint email_format check (email ~* '.+[@][a-z0-9]+[.][a-z0-9]+[.a-z0-9]*[a-z0-9]+$'),
 accCreatedDate timestamptz not null default now(),
 isActive boolean not null
-)
 
 
 create table acc_logindateTime(
