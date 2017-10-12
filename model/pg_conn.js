@@ -10,3 +10,14 @@ const db = pgp(cn);
 
 // Exporting the database object for shared use:
 module.exports = db;
+
+// Using the promise protocol as configured by pg-promise:
+
+const $p = db.$config.promise;
+
+const resolvedPromise = $p.resolve('some data');
+const rejectedPromise = $p.reject('some reason');
+
+const newPromise = $p((resolve, reject) => {
+    // call either resolve(data) or reject(reason) here
+});
