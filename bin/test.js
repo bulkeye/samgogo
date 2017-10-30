@@ -3,26 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-var dt_date = new Date();
-console.log(dt_date.toLocaleDateString());
-console.log(dt_date.toLocaleTimeString());
-
-var a = {"a":"b"};
-a['c'] = 'd';
-console.log(a.c)
-
-
-console.log(Object.keys({}));
-
-var express = require('express');
-var app = express();
-app.set('test',__dirname)
-console.log(app.get('views'));
 
 
 
 
 
+/*
 
 class Polygon {
   constructor(height, width) {
@@ -46,8 +32,9 @@ class Square extends Polygon {
 var square = new Square(2);
 square.sideLength = 3;
 
-console.log(square.height);
 console.log(square.area);
+console.log(square.height);
+
 
 
 var materials = [
@@ -76,6 +63,7 @@ materials.map(material => material.length)
 var Promise = require('promise');
 var filename = '//home//sammy//NetBeansProjects//SAMGOGO//bin//test.txt';
 var readFile = Promise.denodeify(require('fs').readFile);
+
 // now `readFile` will return a promise rather than
 // expecting a callback
 
@@ -99,7 +87,17 @@ readJSON(filename,function(err,res){
     {
         console.log("response: " + res.a);
     }
-    
+}
+
+
+
+let myFirstPromise = new Promise((resolve, reject) => {
+  // We call resolve(...) when what we were doing asynchronously was successful, and reject(...) when it failed.
+  // In this example, we use setTimeout(...) to simulate async code. 
+  // In reality, you will probably be using something like XHR or an HTML5 API.
+  setTimeout(function(){
+    resolve("Success!"); // Yay! Everything went well!
+  }, 3000);
 });
 
 

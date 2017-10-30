@@ -13,7 +13,7 @@
     "express": "^4.16.2",
     "less-middleware": "~2.2.0",
     "morgan": "^1.8.2",
-    "pg-promise": "^7.0.1",
+    "pg-promise": "^7.0.3",
     "promise": "^8.0.1",
     "pug": "^2.0.0-rc.4",
     "sequelize": "^4.15.0",
