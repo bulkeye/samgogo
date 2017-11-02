@@ -145,7 +145,7 @@ askMom();
 var resolvedProm = Promise.resolve(33);
 
 var thenProm = resolvedProm.then(function(value){
-    console.log("this gets called after the end of the main stack. the value received and returned is: " + value);
+        console.log("this gets called after the end of the main stack. the value received and returned is: " + value);
     return value;
 });
 // instantly logging the value of thenProm
@@ -157,7 +157,7 @@ setTimeout(function(){
 });
 
 
-
+/*
 var maybePromise = Math.random() > 0.5 ? 10 : Promise.resolve(10);
 var definitelyPromise = Promise.resolve(maybePromise);
 // equivalent to
@@ -213,3 +213,4 @@ let test = function(){
 
 
 test();
+*/
