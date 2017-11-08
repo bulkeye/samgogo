@@ -4,19 +4,19 @@
  * and open the template in the editor.
  */
 
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
 
 
-var requestTime = function (req, res, next) {
-  var obj_date = new Date();
+let requestTime = function (req, res, next) {
+  let obj_date = new Date();
   req.requestTime = obj_date.toLocaleTimeString() + " " + obj_date.toLocaleDateString()  ;
   next();
 };
 
 
-var logger = function(req,res, next){
+let logger = function(req,res, next){
     console.log("request at " + req.requestTime + " : " + JSON.stringify(req.body));
     next();
 };
@@ -30,7 +30,7 @@ router.use(logger);
 /* response to login request  */
 router.post('/', function (req, res) {
     
-    var jsn_req = JSON.parse(JSON.stringify(req.body));
+    let jsn_req = JSON.parse(JSON.stringify(req.body));
     jsn_req['serverResTime'] = req.requestTime;
    
     res.send(jsn_req);

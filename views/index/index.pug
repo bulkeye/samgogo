@@ -1,6 +1,9 @@
 //- index.pug
-extends ../base/layout.pug
+extends ../base/base_layout.pug
 block append error_msg
     div.login
         p 
-            a#login_link(href="http://localhost:3000/login" target="_blank") login
+            a#login_link(href="http://localhost:3000/userLogin" target="_blank") Login
+    div.login
+        p 
+            a#login_link(href="http://localhost:3000/userLogin" target="_blank") Sign-up
