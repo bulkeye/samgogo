@@ -6,9 +6,62 @@
 
 
 
-
-
 /*
+
+class Triple {
+  static triple(n) {
+    if (n === undefined) {
+      n = 1;
+    }
+    return n * 3;
+  }
+}
+
+class BiggerTriple extends Triple {
+  static triple(n) {
+    return super.triple(n) * super.triple(n);
+  }
+}
+
+console.log(Triple.triple());        // 3
+console.log(Triple.triple(6));       // 18
+
+var tp = new Triple();
+
+console.log(BiggerTriple.triple(3));
+// 81 (not affected by parent's instantiation)
+
+console.log(tp.triple());
+// 'tp.triple is not a function'.
+
+
+class StaticMethodCall {
+  constructor() {
+    console.log(StaticMethodCall.staticMethod()); 
+    // 'static method has been called.' 
+
+    console.log(this.constructor.staticMethod()); 
+    // 'static method has been called.' 
+  }
+
+  static staticMethod() {
+    return 'static method has been called.';
+  }
+}
+
+class StaticMethodCall {
+  static staticMethod() {
+    return 'Static method has been called';
+  }
+  static anotherStaticMethod() {
+    return this.staticMethod() + ' from another static method';
+  }
+}
+StaticMethodCall.staticMethod(); 
+// 'Static method has been called'
+
+StaticMethodCall.anotherStaticMethod(); 
+// 'Static method has been called from another static method'
 
 class Polygon {
   constructor(height, width) {
@@ -106,7 +159,7 @@ let myFirstPromise = new Promise((resolve, reject) => {
 
 /* ES6 */
 const isMomHappy = true;
-
+/*
 // Promise
 const willIGetNewPhone = new Promise(
     (resolve, reject) => { // fat arrow
@@ -145,7 +198,7 @@ askMom();
 var resolvedProm = Promise.resolve(33);
 
 var thenProm = resolvedProm.then(function(value){
-        console.log("this gets called after the end of the main stack. the value received and returned is: " + value);
+    console.log("this gets called after the end of the main stack. the value received and returned is: " + value);
     return value;
 });
 // instantly logging the value of thenProm
@@ -157,7 +210,7 @@ setTimeout(function(){
 });
 
 
-/*
+
 var maybePromise = Math.random() > 0.5 ? 10 : Promise.resolve(10);
 var definitelyPromise = Promise.resolve(maybePromise);
 // equivalent to
@@ -209,8 +262,167 @@ let test = function(){
     
 };
 
-
-
-
 test();
+
+
+
+function myFunction(x, y, z) { throw new UserException('InvalidMonthNo');}
+var args = [0, 1, 2];
+myFunction.apply(null, args);
+
+function myFunction(x, y, z) { throw 'error';}
+var args = [0, 1, 2];
+myFunction.apply(null, args);
+
+
+
+(function iife() {
+    var bar = function () {console.log('bar');};
+    var baz = function () {console.log('baz');};
+    var foo = function () {
+        bar();
+        baz();
+     };
+    var biz = function () {};
+
+    foo();
+    biz();
+}());
+
+
+void function iife() {
+    var bar = function () {console.log('bar');};
+    var baz = function () {console.log('baz');};
+    var foo = function () {
+        bar();
+        baz();
+     };
+    var biz = function () {};
+
+    foo();
+    biz();
+}();
+
+
+function makeIterator(array) {
+    let nextIndex = 0;
+    
+    return {
+       next: function() {
+           return nextIndex < array.length ?
+               {value: array[nextIndex++], done: false} :
+               {done: true};
+       }
+    };
+}
+let mIt1 = makeIterator(['sf',4]);
+console.log(mIt1.next().value);
+console.log(mIt1.next().value);
+console.log(mIt1.next().done);
+
+function* idMaker() {
+  var index = 0;
+  while(true)
+    yield index++;
+}
+
+var gen = idMaker();
+
+console.log(gen.next().value); // 0
+console.log(gen.next().value); // 1
+console.log(gen.next().value); // 2
+
+
+
+
+let myIterable = {};
+myIterable[Symbol.iterator] = function* () {
+    yield 1;
+    yield 2;
+    yield 3;
+};
+
+for (let key of myIterable) { 
+    console.log(key); 
+}
+
+console.log([...'abc']);
+
+
+function* gen1() {
+  yield* ['a', 'b', 'c'];
+}
+
+let ig = gen1();
+
+for (let x of ig){
+    console.log(x);
+    
+}
 */
+
+function* g1() {
+  yield 2;
+  yield 3;
+  yield 4;
+}
+
+function* g2() {
+  yield '1';
+  
+  yield* g1();
+  yield 5;
+  return 6;
+  yield 7;
+  throw 'error';
+}
+
+let iterator = g2();
+
+
+console.log(iterator.next().value); // {value: 1, done: false}
+console.log(iterator.next().value); // {value: 3, done: false}
+console.log(iterator.next().value); // {value: 4, done: false}
+console.log(iterator.next('ab').value); // {value: 5, done: false}
+console.log(iterator.next().value); // {value: undefined, done: true}
+console.log(iterator.next('3').value); // {value: undefined, done: true}
+
+
+
+
+function* fibonacci() {
+  var fn1 = 0;
+  var fn2 = 1;
+  while (true) {  
+    var current = fn1;
+    fn1 = fn2;
+    fn2 = current + fn1;
+    var reset = yield current;
+    if (reset) {
+        fn1 = 0;
+        fn2 = 1;
+    }
+  }
+}
+
+var sequence = fibonacci();
+console.log(sequence.next().value);     // 0
+console.log(sequence.next().value);     // 1
+console.log(sequence.next().value);     // 1
+console.log(sequence.next().value);     // 2
+console.log(sequence.next().value);     // 3
+console.log(sequence.next().value);     // 5
+console.log(sequence.next().value);     // 8
+console.log(sequence.next(true).value); // 0
+console.log(sequence.next().value);     // 1
+console.log(sequence.next().value);     // 1
+console.log(sequence.next().value);     // 2
+
+
+var person = {
+  name: 'Jack',
+  age: 34
+}
+
+console.log(person.age || 'unemployed');
+// 'unemployed'
