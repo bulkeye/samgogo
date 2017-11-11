@@ -1,9 +1,17 @@
 //- index.pug
 extends ../base/base_layout.pug
+block append scripts
+    script(src='/js/c_test.js')  
 block append error_msg
     div.login
-        p 
+        ul(style={font-size: 30, color: 'red', background: 'green'})
+            - 
+                var list = ["Uno", "d", "Tres",
+                                "Cuatro", "c", "Seis"]
+            each item in list
+                li= item
+        p Hi #{fname},
+        p
             a#login_link(href="http://localhost:3000/userLogin" target="_blank") Login
-    div.login
         p 
-            a#login_link(href="http://localhost:3000/userLogin" target="_blank") Sign-up
+            a#signup_link(href="http://localhost:3000/userLogin" target="_blank") Sign-up

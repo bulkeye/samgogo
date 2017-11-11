@@ -466,8 +466,12 @@ add2(20).then(v => {
 });
 
 
-
-(pg_queries.isLoginSuccessful('qiuf_5180@yahoo.om.au', '123456'))
-        .then((rslt) => {console.log(rslt);})
+async function getResult(cb) {
+const reslt = await pg_queries.isLoginSuccessful('qiuf_51@yahoo.com.au', '123456')
+        .then((rslt) => { return  rslt;})
         .catch((error) => {console.log("error is: " + error);});
+a = reslt;
+a
+};
 
+console.log(a);

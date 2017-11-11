@@ -2,13 +2,14 @@
 doctype html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"
 html(lang="en")
     head
-        title My Site - #{title}
-        style
-            include ../../public/css/style.css
+        title My Site - #{fname}
+        block style
+            link(href='/css/style.css', rel='stylesheet')
         block scripts  
             script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js')
-            script
-                include ../../public/js/login/submitForm.js
+            script(src='https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.6/angular.js')
+            script(src='/js/login/c_sendLogin.js')
+            
     body
         div.outerContainer
             h1= title

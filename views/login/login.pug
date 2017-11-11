@@ -3,7 +3,7 @@ extends ../base/base_layout.pug
 block append content
         div.formContainer
             form#searchForm(action="/loginForm" )
-                input.inputText#inputName(type="text" placeholder="name..." required='true')
+                input.inputText#inputEmail(type="text" placeholder="email..." required='true')
                 input.inputText#inputPW(type="password" placeholder="password..." required='true')
                 input#submitBtn(type="submit" value="submit")
             .typedText  

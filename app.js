@@ -6,9 +6,9 @@ let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
 let lessMiddleware = require('less-middleware');
 
-let index = require('./routes/index/index');
-let login = require('./routes/login/userLogin');
-let login_submitForm = require('./routes/login/userLogin_submitForm');
+let index = require('./routes/index/r_index');
+let login = require('./routes/login/r_userLogin');
+let login_submitForm = require('./routes/login/r_userLoginForm');
 
 let app = express();
 

@@ -4,7 +4,7 @@ let router = express.Router();
 /* GET home page. */
  
 router.get('/', function(req, res) {
-  res.render('login/login', { title: '' },function(err,html){
+  res.render('login/login', {},function(err,html){
       if(!err){
           res.send(html);
       }else

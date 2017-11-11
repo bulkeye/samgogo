@@ -5,8 +5,9 @@
  */
 
 let express = require('express');
+let pg_queries = require('../../db/pg_queries');
 let router = express.Router();
-
+ 
 
 
 let requestTime = function (req, res, next) {
@@ -21,23 +22,43 @@ let logger = function(req,res, next){
     next();
 };
 
+let fn_isLoginSuccessful = async (req, res, next) => {
+    let jsn_loginReq =  JSON.parse(JSON.stringify(req.body));
+    req.isLoginSuccessful = 
+    await (pg_queries.isLoginSuccessful(jsn_loginReq['email'], jsn_loginReq['pw']))
+        .then((rslt) => {return rslt;})
+        .catch((error) => {console.log("error is: " + error);});
+    next();
+};
 
 
 router.use(requestTime); 
 router.use(logger); 
-
+router.use(fn_isLoginSuccessful); 
 
 /* response to login request  */
 router.post('/', function (req, res) {
     
-    let jsn_req = JSON.parse(JSON.stringify(req.body));
-    jsn_req['serverResTime'] = req.requestTime;
-   
-    res.send(jsn_req);
+    let jsn_rep = {
+        serverResTime: req.requestTime,
+        isLoginSuccessful: req.isLoginSuccessful
+    }; 
     
-
+    
+    let jsn_repFinal = JSON.parse(JSON.stringify(jsn_rep));
+    
+    console.log(jsn_rep);
+    
+    res.send(jsn_repFinal);
+    
+    
    
 
 });
+
+
+
+
+
 
 module.exports = router;
