@@ -2,9 +2,9 @@
 const pg_conn = require('./pg_conn');
 
 let queries = {
- isLoginSuccessful : async (email,pw) => {
+ json_getLoginInfo : async (email,pw) => {
                                     return await pg_conn.task('isLoginSuccessful', async (t) => {
-                                        const rslt  =  await t.oneOrNone('select public.isLoginSuccessful($1,$2) as result', [email,pw], r => r && r.result );
+                                        const rslt  =  await t.oneOrNone('select public.fn_isloginsuccessful($1,$2) as result', [email,pw], r => r && r.result );
                                         return  rslt;
                                         
                                         

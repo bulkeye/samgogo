@@ -22,10 +22,10 @@ let logger = function(req,res, next){
     next();
 };
 
-let fn_isLoginSuccessful = async (req, res, next) => {
+let LoginInfo = async (req, res, next) => {    
     let jsn_loginReq =  JSON.parse(JSON.stringify(req.body));
-    req.isLoginSuccessful = 
-    await (pg_queries.isLoginSuccessful(jsn_loginReq['email'], jsn_loginReq['pw']))
+    req.loginInfo = 
+    await (pg_queries.json_getLoginInfo(jsn_loginReq['email'], jsn_loginReq['pw']))
         .then((rslt) => {return rslt;})
         .catch((error) => {console.log("error is: " + error);});
     next();
@@ -34,22 +34,20 @@ let fn_isLoginSuccessful = async (req, res, next) => {
 
 router.use(requestTime); 
 router.use(logger); 
-router.use(fn_isLoginSuccessful); 
+router.use(LoginInfo); 
 
 /* response to login request  */
 router.post('/', function (req, res) {
     
-    let jsn_rep = {
+    let jsn_res = {
         serverResTime: req.requestTime,
-        isLoginSuccessful: req.isLoginSuccessful
+        loginInfo: req.loginInfo
     }; 
     
     
-    let jsn_repFinal = JSON.parse(JSON.stringify(jsn_rep));
-    
-    console.log(jsn_rep);
-    
-    res.send(jsn_repFinal);
+    let jsn_resFinal = JSON.parse(JSON.stringify(jsn_res));
+    console.log(jsn_resFinal);
+    res.send(jsn_resFinal);
     
     
    

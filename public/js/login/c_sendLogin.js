@@ -32,17 +32,31 @@ $(document).ready(function (e) {
                             var int_resJsonLen = Object.keys(json_res).length;
                             var str_res = "";
                              
+                            console.log(int_resJsonLen); 
                             if(int_resJsonLen !== 0){
                                   
-                                str_res =  "server response at " + json_res['serverResTime'] + " : <br />";
-                                $(".ajaxResult").append(str_res);   
+                                
                                 
                                 for (var i = 0; i < int_resJsonLen; i++ ){
                                    
-                                    if (Object.keys(json_res)[i] !== "serverResTime"){
-                                       str_res = Object.keys(json_res)[i] +  " : " + json_res[Object.keys(json_res)[i]] + "<br />";
+                                   
+								   
+                                    if (Object.keys(json_res)[i] == "loginInfo"){
+                                        
+                                        let jsn_loginInfo = json_res[Object.keys(json_res)[i]];
+                                        let int_resJsonLen2 = Object.keys(jsn_loginInfo).length;
+                                        
+                                        
+                                        for (let k = 0; k < int_resJsonLen2; k++ ){
+                                            str_res = Object.keys(jsn_loginInfo)[k] +  " : " + jsn_loginInfo[Object.keys(jsn_loginInfo)[k]] + "<br />";
+                                            $(".ajaxResult").append(str_res);
+                                        }
+                                    }else{
+                                        str_res = Object.keys(json_res)[i] +  " : " + json_res[Object.keys(json_res)[i]] + "<br />";
                                         $(".ajaxResult").append(str_res);
                                     }
+									
+                                   
                                 }
                             };
                 })

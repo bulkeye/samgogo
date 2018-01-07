@@ -4,14 +4,9 @@ block append scripts
     script(src='/js/c_test.js')  
 block append error_msg
     div.login
-        ul(style={font-size: 30, color: 'red', background: 'green'})
-            - 
-                var list = ["Uno", "d", "Tres",
-                                "Cuatro", "c", "Seis"]
-            each item in list
-                li= item
-        p Hi #{fname},
+
+        p Hi #{gr},
         p
-            a#login_link(href="http://localhost:3000/userLogin" target="_blank") Login
+            a#login_link(href="http://localhost/userLogin" target="_blank") Login
         p 
-            a#signup_link(href="http://localhost:3000/userLogin" target="_blank") Sign-up
+            a#signup_link(href="http://localhost/userLogin" target="_blank") Sign-up

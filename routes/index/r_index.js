@@ -4,7 +4,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res) { 
-  let json_param = {fname:'feng'};
+  let json_param = {gr:'Welcome to this website!'};
   res.render('index/index', json_param, function(err,html){
       if(!err){
           res.send(html);
