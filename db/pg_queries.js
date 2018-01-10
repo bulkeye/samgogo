@@ -11,5 +11,5 @@ let queries = {
                                            });            
                                       }
 };
-//module.exports = (email,pw) => {isLoginSuccessful(email,pw);};
+//module.exports = (e   mail,pw) => {isLoginSuccessful(email,pw);};
   module.exports =   queries;                            
