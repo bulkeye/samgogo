@@ -155,11 +155,11 @@
  
  
  
+ /*
  
  
- /* ES6 */
 const isMomHappy = true;
-/*
+
  // Promise
  const willIGetNewPhone = new Promise(
  (resolve, reject) => { // fat arrow
@@ -359,7 +359,7 @@ const isMomHappy = true;
  console.log(x);
  
  }
- */
+ 
 
 function* g1() {
     yield 2;
@@ -370,7 +370,7 @@ function* g1() {
 function* g2() {
     yield '1';
 
-    yield * g1();
+    yield* g1();
     yield 5;
     return 6;
     yield 7;
@@ -381,15 +381,44 @@ let iterator = g2();
 
 
 console.log(iterator.next().value); // {value: 1, done: false}
+console.log(iterator.next("no").value); // {value: 4, done: false}
 console.log(iterator.next().value); // {value: 3, done: false}
 console.log(iterator.next().value); // {value: 4, done: false}
-console.log(iterator.next('ab').value); // {value: 5, done: false}
-console.log(iterator.next().value); // {value: undefined, done: true}
-console.log(iterator.next('3').value); // {value: undefined, done: true}
+console.log(iterator.next().value); // {value: 4, done: false}
+console.log(iterator.next().value); // {value: 4, done: false}
+
+var myIterable = {};
+myIterable[Symbol.iterator] = function* () {
+    yield 1;
+    yield 2;
+    yield 3;
+};
+
+var it = makeIterator(['yo', 'ya']);
+console.log(it.next().value); // 'yo'
+console.log(it.next().value); // 'ya'
+console.log(it.next().done);  // true
 
 
 
+function* g3() {
+  yield* [1, 2];
+  yield* '34';
+  yield* Array.from(arguments);
+}
 
+var iterator1 = g3(5, 6);
+
+console.log(iterator1.next()); // {value: 1, done: false}
+console.log(iterator1.next()); // {value: 2, done: false}
+console.log(iterator1.next()); // {value: "3", done: false}
+console.log(iterator1.next()); // {value: "4", done: false}
+console.log(iterator1.next()); // {value: 5, done: false}
+console.log(iterator1.next()); // {value: 6, done: false}
+console.log(iterator1.next()); // {value: undefined, done: true}
+
+
+ 
 function* fibonacci() {
     var fn1 = 0;
     var fn2 = 1;
@@ -475,3 +504,34 @@ a = reslt;
 };
 
 console.log(a);
+
+*/
+
+var fs = require('fs');
+var XLSX = require('xlsx');
+function process_RS(stream/*:ReadStream*/, cb/*:(wb:Workbook)=>void*/)/*:void*/{
+  var buffers = [];
+  stream.on('data', function(data) { buffers.push(data); });
+  stream.on('end', function() {
+    var buffer = Buffer.concat(buffers);
+    var workbook = XLSX.read(buffer, {type:"buffer"});
+ 
+    /* DO SOMETHING WITH workbook IN THE CALLBACK */
+    cb(workbook);
+  });
+}
+//D:\\Works\\AWLQ\\My Job\\INPUT\THANKQ IMPORT FILE v19 raw.xlsx
+var obj_fs = fs.FileReadStream("D:\\Works\\AWLQ\\My Job\\INPUT\\THANKQ IMPORT FILE v19 raw.xlsx");
+
+process_RS(obj_fs, (wb)=>{
+    //console.log(wb);
+   //console.log(wb["Strings"][0]);
+   var arr = wb["Strings"];
+   arr.forEach((data)=>{console.log(data);});
+    //console.log(wb.Workbook);
+    
+}) ;
+
+
+a = function(){};
+var a;

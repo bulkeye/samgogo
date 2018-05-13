@@ -22,7 +22,8 @@ let logger = function(req,res, next){
     next();
 };
 
-let LoginInfo = async (req, res, next) => {    
+let LoginInfo = 
+   async (req, res, next) => {    
     let jsn_loginReq =  JSON.parse(JSON.stringify(req.body));
     req.loginInfo = 
     await (pg_queries.json_getLoginInfo(jsn_loginReq['email'], jsn_loginReq['pw']))
