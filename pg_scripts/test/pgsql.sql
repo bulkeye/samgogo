@@ -136,3 +136,21 @@ begin
     
 end;
 $function$
+
+
+
+CREATE OR REPLACE VIEW public.view_userprofile AS
+ SELECT a.account_id,
+    a.firstname,
+    a.lastname,
+    a.uuid,
+    a.email,
+    a.password,
+    a.acccreateddate,
+    a.isactive,
+    b.login_datetime,
+    c.state
+   FROM acc_name a,
+    acc_logindatetime b,
+    acc_lkp_austate c
+  WHERE a.account_id = b.id AND a.stateid = c.id;
